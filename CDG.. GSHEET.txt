@@ -1,0 +1,285 @@
+function prepare_PDF (){
+const ss = SpreadsheetApp.getActiveSpreadsheet();
+const netInv = ss.getSheetByName("Net Invoice Generator");
+var total = Number(netInv.getRange(39, 13).getDisplayValue().replace(/[^0-9.-]+/g,""));
+var dec = (total % 1).toFixed(2) * 100;
+var num = Math.floor(total);
+
+var string = writtenNumber(num).charAt(0).toUpperCase() + writtenNumber(num).slice(1) + " US dollars, and " + writtenNumber(dec) + " cents";
+netInv.getRange(40, 2).setValue(string);
+const netInv1 = ss.getSheetByName("Customs Invoice");
+var total = Number(netInv1.getRange(42, 13).getDisplayValue().replace(/[^0-9.-]+/g,""));
+var dec = (total % 1).toFixed(2) * 100;
+var num = Math.floor(total);
+
+var string = writtenNumber(num).charAt(0).toUpperCase() + writtenNumber(num).slice(1) + " US dollars, and " + writtenNumber(dec) + " cents";
+netInv1.getRange(43, 2).setValue(string);
+
+/*const netInvC = ss.getSheetByName("New Customs Invoice");
+var total = Number(netInvC.getRange(41, 15).getDisplayValue().replace(/[^0-9.-]+/g,""));
+var dec = (total % 1).toFixed(2) * 100;
+var num = Math.floor(total);
+
+var string = writtenNumber(num).charAt(0).toUpperCase() + writtenNumber(num).slice(1) + " US dollars, and " + writtenNumber(dec) + " cents";
+netInvC.getRange(42, 2).setValue(string);*/
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+var sheet = SpreadsheetApp.getActive().getSheetByName("Net Invoice Generator");
+//var sheet2 = SpreadsheetApp.getActive().getSheetByName("Net Invoice Generator without logo");
+var sheet_ = SpreadsheetApp.getActive().getSheetByName("Tax Invoice");
+
+var data = sheet.getDataRange().getValues();
+
+  var sheet1 = SpreadsheetApp.getActive().getSheetByName("Customs Invoice");
+  var data1 = sheet1.getDataRange().getValues();
+
+ //var sheetc = SpreadsheetApp.getActive().getSheetByName("New Customs Invoice");
+ //var datac = sheetc.getDataRange().getValues();
+  
+
+   
+
+   //var sheet15 = SpreadsheetApp.getActive().getSheetByName("Bank letter");
+  //var data15 = sheet15.getDataRange().getValues();
+
+if(data[76][5]==0){
+  sheet.hideColumns(6);
+  //sheet2.hideColumns(6);
+  sheet_.hideColumns(6);
+  //sheetc.hideColumns(6);
+  }
+  for(var i = 14; i < 42; i++) {
+    
+    if(data[i][14] == 0) {
+      sheet.hideRows(i+1 );
+      sheet_.hideRows(i + 1);
+     // sheet2.hideRows(i + 1);
+      
+    }
+
+    
+    if(data1[i][15] == 0) {
+     
+      sheet1.hideRows(i + 1);
+    
+    }
+  
+     
+  }
+  
+ 
+ 
+   
+  
+  
+  var sheet = SpreadsheetApp.getActive().getSheetByName("Treatment Certificate");
+  //var sheet1 = SpreadsheetApp.getActive().getSheetByName("Treatment Certificate without logo");
+  var data = sheet.getDataRange().getValues();
+   sheet.hideColumns(6);
+   sheet1.hideColumns(6);
+  
+  for(var i = 1; i < data.length; i++) {
+    //If column C (3rd column) is "Y" then hide the row.
+    if(data[i][14] == 0) {
+      sheet.hideRows(i + 1);
+      //sheet1.hideRows(i + 1);
+    }
+  }
+
+  
+  var sheet = SpreadsheetApp.getActive().getSheetByName("Packaging and Weight v1");
+  //var sheet1 = SpreadsheetApp.getActive().getSheetByName("Packaging and Weight v1 without logo");
+  var data = sheet.getDataRange().getValues();
+  if(data[54][5]== 0){
+    sheet.hideColumns(6);
+   // sheet1.hideColumns(6);
+   
+  }
+  for(var i = 19; i < 34; i++) {
+    //If column C (3rd column) is "Y" then hide the row.
+    if(data[i][15] == 0) {
+      sheet1.hideRows(i + 1);
+      sheet.hideRows(i + 1);
+    }
+  }
+ 
+var sheet16 = SpreadsheetApp.getActive().getSheetByName("Serial Export Order");
+var sheet = SpreadsheetApp.getActive().getSheetByName("Export Order");
+var sheet2 = SpreadsheetApp.getActive().getSheetByName("Marubeni Export Order");
+  var data = sheet.getDataRange().getValues();
+   var data2 = sheet16.getDataRange().getValues();
+
+  
+
+  for(var i = 31; i < 60; i++) {
+    //If column C (3rd column) is "Y" then hide the row.
+
+      
+      
+      
+  
+
+    if(data[i][13] == 0) {
+      sheet.hideRows(i + 1);
+      sheet2.hideRows(i + 1);
+     
+    }
+    if(data2[i][13] == 0) {
+      
+      sheet16.hideRows(i + 1);
+    }
+
+
+
+
+function diprepare_PDF1 (){
+
+ 
+ 
+   
+  
+  
+  var sheet1 = SpreadsheetApp.getActive().getSheetByName("Net Invoice Generator");
+  var sheet_ = SpreadsheetApp.getActive().getSheetByName("Tax Invoice");
+  //var sheet2 = SpreadsheetApp.getActive().getSheetByName("Net Invoice Generator without logo");
+  var sheet3 = SpreadsheetApp.getActive().getSheetByName("Customs Invoice");
+  //var sheetc = SpreadsheetApp.getActive().getSheetByName("New Customs Invoice");
+  var sheet4 = SpreadsheetApp.getActive().getSheetByName("Treatment Certificate");
+  var sheet5= SpreadsheetApp.getActive().getSheetByName("Treatment Certificate without logo");
+  var sheet6 = SpreadsheetApp.getActive().getSheetByName("Packaging and Weight v1");
+  //var sheet7 = SpreadsheetApp.getActive().getSheetByName("Packaging and Weight v1 without logo");
+  //var sheet8 = SpreadsheetApp.getActive().getSheetByName("Fumigation");
+
+  //var sheet10 = SpreadsheetApp.getActive().getSheetByName("Declaration");
+  //var sheet11 = SpreadsheetApp.getActive().getSheetByName("Draft for payment");
+  var sheet12 = SpreadsheetApp.getActive().getSheetByName("Export Order");
+  var sheet13 = SpreadsheetApp.getActive().getSheetByName("Marubeni Export Order");
+ 
+  //var sheet15 = SpreadsheetApp.getActive().getSheetByName("Bank letter");
+  //var sheet16 = SpreadsheetApp.getActive().getSheetByName("Serial Export Order");
+  
+    sheet1.showColumns(6);
+    //sheet2.showColumns(6);
+    //sheet6.showColumns(6);
+    //sheet7.showColumns(6);
+     sheet13.showColumns(6);
+  
+  
+   
+  for(var i = 12; i < 75; i++) {
+    
+      sheet1.showRows(i + 1);
+      sheet_.showRows(i + 1);
+       sheet13.showRows(i + 1)
+    //sheet2.showRows(i + 1);
+    sheet3.showRows(i + 1);
+    sheet4.showRows(i + 1);
+    //sheet5.showRows(i + 1);
+    //sheet6.showRows(i + 1);
+    //sheet7.showRows(i + 1);
+    //sheetc.showRows(i + 1);
+   
+    if(i<=59){
+      //sheet8.showRows(i + 1);
+      //sheet15.showRows(i + 1);
+      
+
+      //sheet11.showRows(i + 1);
+
+
+    }
+   
+    
+    
+    //sheet10.showRows(i + 1);
+    sheet12.showRows(i + 1);
+    //sheet16.showRows(i + 1);
+    //sheet13.showRows(i + 1);
+
+    
+
+  }
+ 
+ 
+
+ 
+
+}
+
+
+
+
+
+function GetRanges1() {
+  var CGSheetID = ""; 
+  var CG_So_Sheet = "SO";
+ 
+
+
+  var SWMSheetID = "";
+  var SWM_SO_Sheet ="SO";
+
+  
+
+  
+  Sheets.Spreadsheets.Values.clear({}, CGSheetID, CG_So_Sheet);
+
+  SpreadsheetApp.getActive().toast("Updating CG sheet...", " sheet Update",10);
+  var srcValues = Sheets.Spreadsheets.Values.get(SWMSheetID, SWM_SO_Sheet).values;
+  Sheets.Spreadsheets.Values.update({values: srcValues}, CGSheetID,CG_So_Sheet, {valueInputOption: "USER_ENTERED"});
+
+
+
+
+
+}
+
+
+
+
+
+
+
+function addTrig() {
+  const ui = SpreadsheetApp.getUi();
+  const custom = ui.createMenu("Custom");
+  const custom1 = ui.createMenu("Range ");
+  
+ /*custom.addItem("Generate PDF for Treatment Certificate ", "Printsheet_TCert");
+  custom.addItem("Generate PDF for Net Invoice", "Printsheet");
+  custom.addItem("Generate PDF for Packing and Weight Certificate", "Printsheet_PandW");
+  custom.addItem("Generate PDF for Export Report", "Printsheet_Export");
+  custom.addItem("Generate Price in Net Invoice", "numberToText");
+  custom.addItem("Hide Empty cells  ", "filterRows");*/
+  custom.addItem("Preparing sheets for PDF Generation", "prepare_PDF");
+  
+  custom.addItem("Show All Cells ", "diprepare_PDF1");
+
+  custom1.addItem( "Import Range","GetRanges1");
+  
+ 
+
+
+
+  custom.addToUi();  
+   custom1.addToUi()
+
+}
+
+function onOpen(){
+  addTrig();
+}
+
+
